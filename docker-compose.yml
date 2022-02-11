@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  libdrive:
+    build: .
+    container_name: libdrive
+    privileged: true
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - WEB_CONCURRENCY=1
+      - LIBDRIVE_VERSION=${LIBDRIVE_VERSION}
+      - LIBDRIVE_CLOUD=${LIBDRIVE_CLOUD}
+      - LIBDRIVE_CONFIG=${LIBDRIVE_CONFIG}
+    ports:
+      - 31146:31146
+    restart: unless-stopped
